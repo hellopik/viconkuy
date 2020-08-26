@@ -10,6 +10,7 @@
 </head>
 <body onload="showMyFace()">
 <video width=250 id="yourVideo" controls autoplay></video>
+<video width=250 id="friendsVideo" controls autoplay></video>	
 <div>
 	<input type="checkbox" id="enable_chat" onclick="enableChat()" checked> Enable chat
 	<span id=micused style="right:0;position:fixed;"></span>
@@ -32,7 +33,7 @@
 </div>
 <div>
 	<p>
-		<video width=250 id="remote" controls autoplay></video>
+		<video width=250 id="friendsVideo" controls autoplay></video>
 		Wong Liyo
 		<textarea id="remoteOffer" rows="4" cols="50" placeholder="Paste remote SDP"></textarea>
 		<button id=remoteOfferGot>Answer</button>
