@@ -11,9 +11,11 @@ var localStream, _fileChannel, chatEnabled,context,source,
 function errHandler(err){
 	console.log(err);
 }
-
-function showMyFace() {
-  chatEnabled=true;	
+function enableChat(){
+	enable_chat.checked? (chatEnabled=true) : (chatEnabled=false);
+}
+enableChat();
+function showMyFace() {	
   navigator.mediaDevices.getUserMedia({audio:true, video:true})
     .then(stream => yourVideo.srcObject = stream)
     .then(stream => pc.addStream(stream));
