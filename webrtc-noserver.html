@@ -10,7 +10,9 @@
 </head>
 <body onload="showMyFace()">
 <video width=250 id="yourVideo" controls autoplay></video>
-<video width=250 id="friendsVideo" controls autoplay></video>	
+<video width=250 id="friendsVideo" controls autoplay></video>
+		<button id=remoteOfferGot>Answer</button>
+		<button id=remoteOfferGot>Answer</button>	
 <div>
 	<input type="checkbox" id="enable_chat" onclick="enableChat()" checked> Enable chat
 	<span id=micused style="right:0;position:fixed;"></span>
@@ -24,7 +26,6 @@
 </div>
 <div>
 	<p>
-		<video width=250 id="yourVideo" controls autoplay></video>
 		Awaku tok
 		<textarea rows="4" cols="50"  id=localOffer></textarea>
 		<button id=localOfferSet>CreateOffer</button>	
@@ -32,8 +33,6 @@
 </div>
 <div>
 	<p>
-		<video width=250 id="remote" controls autoplay></video>
-		<video width=250 id="friendsVideo" controls autoplay></video>
 		Wong Liyo
 		<textarea id="remoteOffer" rows="4" cols="50" placeholder="Paste remote SDP"></textarea>
 		<button id=remoteOfferGot>Answer</button>
