@@ -14,11 +14,12 @@ function enableChat(){
 }
 enableChat();
 
-navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(stream=>{
-	localStream = stream;
+navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function (stream) {
+	this.localStream = stream;
 	micused.innerHTML = localStream.getAudioTracks()[0].label;
 	pc.addStream(stream);
-	local.src = URL.createObjectURL(stream);
+	this.local.src = window.URL.createObjectURL(stream);
+	console.log("initialized my stream");
 	local.muted=true;
 }).catch(errHandler);
 
