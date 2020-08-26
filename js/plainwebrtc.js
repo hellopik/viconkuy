@@ -1,4 +1,5 @@
 var yourVideo = document.getElementById("yourVideo");
+var friendsVideo = document.getElementById("friendsVideo");
 var conf = {iceServers: [{urls: []}]};
 var pc = new RTCPeerConnection(conf);
 var localStream, _fileChannel, chatEnabled,context,source,
@@ -53,10 +54,7 @@ pc.onicecandidate = function(e){
 pc.oniceconnectionstatechange = function(){
 	console.log('iceconnectionstatechange: ',pc.iceConnectionState);
 }
-pc.onaddstream = function(e){
-	console.log('remote onaddstream',e.stream);
-	remote.src = URL.createObjectURL(e.stream);
-}
+pc.onaddstream = (event => friendsVideo.srcObject = event.stream);
 pc.onconnection = function(e){
 	console.log('onconnection ',e);
 }
