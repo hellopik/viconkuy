@@ -17,6 +17,7 @@ function enableChat(){
 enableChat();
 
 function showMyFace() {
+  chatEnabled=true	
   navigator.mediaDevices.getUserMedia({audio:true, video:true})
     .then(stream => yourVideo.srcObject = stream)
     .then(stream => pc.addStream(stream));
