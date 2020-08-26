@@ -8,7 +8,7 @@
 		}
 	</style>
 </head>
-<body>
+<body onload="showMyFace()">
 <div>
 	<input type="checkbox" id="enable_chat" onclick="enableChat()" checked> Enable chat
 	<span id=micused style="right:0;position:fixed;"></span>
@@ -23,8 +23,8 @@
 </div>
 <div>
 	<p>
-		<video width=250 id="local" controls autoplay></video>
-		Awaku dewe
+		<video width=250 id="yourVideo" controls autoplay></video>
+		Awaku tok
 		<textarea rows="4" cols="50"  id=localOffer></textarea>
 		<button id=localOfferSet>CreateOffer</button>	
 	</p>	
