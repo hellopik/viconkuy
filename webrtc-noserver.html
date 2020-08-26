@@ -12,6 +12,17 @@
 <video width=250 id="yourVideo" controls autoplay></video>
 <video width=250 id="friendsVideo" controls autoplay></video>	
 <div>
+	<input type="checkbox" id="enable_chat" onclick="enableChat()" checked> Enable chat
+	<span id=micused style="right:0;position:fixed;"></span>
+</div>
+<div>
+	<h4>LocalStream</h4>
+	<input type="checkbox" id="enableAudioFile">Audio File
+	<input type="file" id="streamAudioFile">	
+	<br>
+	<!-- <input type="checkbox" id="enable_mic" checked>Microphone -->
+</div>
+<div>
 	<p>
 		<video width=250 id="yourVideo" controls autoplay></video>
 		Awaku tok
@@ -21,6 +32,7 @@
 </div>
 <div>
 	<p>
+		<video width=250 id="remote" controls autoplay></video>
 		<video width=250 id="friendsVideo" controls autoplay></video>
 		Wong Liyo
 		<textarea id="remoteOffer" rows="4" cols="50" placeholder="Paste remote SDP"></textarea>
