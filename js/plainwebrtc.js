@@ -1,3 +1,4 @@
+var yourVideo = document.getElementById("yourVideo");
 var conf = {iceServers: [{urls: []}]};
 var pc = new RTCPeerConnection(conf);
 var localStream, _fileChannel, chatEnabled,context,source,
@@ -14,14 +15,11 @@ function enableChat(){
 }
 enableChat();
 
-navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function (stream) {
-	this.localStream = stream;
-	micused.innerHTML = localStream.getAudioTracks()[0].label;
-	pc.addStream(stream);
-	this.local.src = window.URL.createObjectURL(stream);
-	console.log("initialized my stream");
-	local.muted=true;
-}).catch(errHandler);
+function showMyFace() {
+  navigator.mediaDevices.getUserMedia({audio:true, video:true})
+    .then(stream => yourVideo.srcObject = stream)
+    .then(stream => pc.addStream(stream));
+}
 
 function sendMsg(){
 	var text = sendTxt.value;
