@@ -93,7 +93,8 @@ localOfferSet.onclick = function(){
 			},2000);
 		console.log(pc.localDescription);			
 			console.log('setLocalDescription ok');
-		}).catch(e => console.log('Create Offer', e));
+			console.log('Create Offer', des)
+		}).catch(e);
 		// For chat
 	}).catch(errHandler);
 }
