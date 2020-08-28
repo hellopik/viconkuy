@@ -91,6 +91,7 @@ localOfferSet.onclick = function(){
 					localOffer.value = JSON.stringify(pc.localDescription);
 				}
 			},2000);
+		console.log(pc.localDescription);			
 			console.log('setLocalDescription ok');
 		}).catch(errHandler);
 		// For chat
