@@ -47,7 +47,7 @@ pc.onicecandidate = function(e){
 		console.log('iceGatheringState complete',pc.localDescription.sdp);
 		localOffer.value = JSON.stringify(pc.localDescription);
 	}else{
-		console.log(cand.candidate);
+		console.log('on ice date', cand.candidate);
 	}
 }
 pc.oniceconnectionstatechange = function(){
@@ -93,7 +93,7 @@ localOfferSet.onclick = function(){
 			},2000);
 		console.log(pc.localDescription);			
 			console.log('setLocalDescription ok');
-		}).catch(errHandler);
+		}).catch(e => console.log('Create Offer', e));
 		// For chat
 	}).catch(errHandler);
 }
