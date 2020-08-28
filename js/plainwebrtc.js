@@ -1,7 +1,21 @@
 var yourVideo = document.getElementById("yourVideo");
 var friendsVideo = document.getElementById("friendsVideo");
-var conf = {iceServers: [{urls: "stun:stun.l.google.com:19302" }]};
-var conf = {iceServers: [{urls: []}]};
+var conf = {
+iceServers: [{
+   urls: [ "stun:ss-turn1.xirsys.com" ]
+}, {
+   username: "DfUlLWWzygqK2Lc0VbxZ1SkiwjIsZyATIFQWLzcjBLQUU1Yw20ouY4egeFJj1u5yAAAAAF9I-wxqb3NoZ2FuZG9z",
+   credential: "8abdce4c-e92b-11ea-832e-0242ac140004",
+   urls: [
+       "turn:ss-turn1.xirsys.com:80?transport=udp",
+       "turn:ss-turn1.xirsys.com:3478?transport=udp",
+       "turn:ss-turn1.xirsys.com:80?transport=tcp",
+       "turn:ss-turn1.xirsys.com:3478?transport=tcp",
+       "turns:ss-turn1.xirsys.com:443?transport=tcp",
+       "turns:ss-turn1.xirsys.com:5349?transport=tcp"
+   ]
+}]
+};
 var pc = new RTCPeerConnection(conf);
 var localStream, _fileChannel, chatEnabled,context,source,
 	_chatChannel,sendFileDom = {}, 
@@ -70,8 +84,31 @@ remoteOfferGot.onclick = function(){
 			}
 	}).catch(errHandler);	
 }
-
-pc.createOffer().then(d => pc.setLocalDescription(d)).catch(e => console.log('mantab jiwa', e));
+localOfferSet.onclick = function(){
+	if(chatEnabled){
+		_chatChannel = pc.createDataChannel('chatChannel');
+		_fileChannel = pc.createDataChannel('fileChannel');
+		// _fileChannel.binaryType = 'arraybuffer';
+		chatChannel(_chatChannel);
+		fileChannel(_fileChannel);
+	}
+	pc.createOffer().then(des=>{
+		console.log('createOffer ok ');
+		pc.setLocalDescription(des).then( ()=>{
+			setTimeout(function(){
+				if(pc.iceGatheringState == "complete"){
+					return;
+				}else{
+					console.log('after GetherTimeout');
+					localOffer.value = JSON.stringify(pc.localDescription);
+				}
+			},2000);
+		console.log(pc.localDescription);			
+			console.log('setLocalDescription ok');
+		}).catch(errHandler);
+		// For chat
+	}).catch(errHandler);
+}
 //File transfer
 fileTransfer.onchange = function(e){
 	var files = fileTransfer.files;
