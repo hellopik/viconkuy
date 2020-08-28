@@ -70,16 +70,8 @@ remoteOfferGot.onclick = function(){
 			}
 	}).catch(errHandler);	
 }
-localOfferSet.onclick = function(){
-	if(chatEnabled){
-		_chatChannel = pc.createDataChannel('chatChannel');
-		_fileChannel = pc.createDataChannel('fileChannel');
-		// _fileChannel.binaryType = 'arraybuffer';
-		chatChannel(_chatChannel);
-		fileChannel(_fileChannel);
-	}
+
 pc.createOffer().then(d => pc.setLocalDescription(d)).catch(e => console.log('mantab jiwa', e));
-}
 //File transfer
 fileTransfer.onchange = function(e){
 	var files = fileTransfer.files;
