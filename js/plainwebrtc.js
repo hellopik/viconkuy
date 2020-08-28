@@ -1,5 +1,6 @@
 var yourVideo = document.getElementById("yourVideo");
 var friendsVideo = document.getElementById("friendsVideo");
+var conf = {iceServers: [{urls: "stun:stun.l.google.com:19302" }]};
 var conf = {iceServers: [{urls: []}]};
 var pc = new RTCPeerConnection(conf);
 var localStream, _fileChannel, chatEnabled,context,source,
@@ -20,7 +21,6 @@ function showMyFace() {
     .then(stream => yourVideo.srcObject = stream)
     .then(stream => pc.addStream(stream));
 }
-
 function sendMsg(){
 	var text = sendTxt.value;
 	chat.innerHTML = chat.innerHTML + "<pre class=sent>" + text + "</pre>";
@@ -40,14 +40,13 @@ pc.ondatachannel = function(e){
 		chatChannel(e.channel);
 	}
 };
-
 pc.onicecandidate = function(e){
 	var cand = e.candidate;
 	if(!cand){
 		console.log('iceGatheringState complete',pc.localDescription.sdp);
 		localOffer.value = JSON.stringify(pc.localDescription);
 	}else{
-		console.log('muehehehehe, cand.candidate);
+		console.log(cand.candidate);
 	}
 }
 pc.oniceconnectionstatechange = function(){
@@ -57,7 +56,6 @@ pc.onaddstream = (event => friendsVideo.srcObject = event.stream);
 pc.onconnection = function(e){
 	console.log('onconnection ',e);
 }
-
 remoteOfferGot.onclick = function(){
 	var _remoteOffer = new RTCSessionDescription(JSON.parse(remoteOffer.value));
 	console.log('remoteOffer \n',_remoteOffer);
@@ -80,24 +78,8 @@ localOfferSet.onclick = function(){
 		chatChannel(_chatChannel);
 		fileChannel(_fileChannel);
 	}
-	pc.createOffer().then(des=>{
-		console.log('createOffer ok ');
-		pc.setLocalDescription(des).then( ()=>{
-			setTimeout(function(){
-				if(pc.iceGatheringState == "complete"){
-					return;
-				}else{
-					console.log('after GetherTimeout');
-					localOffer.value = JSON.stringify(pc.localDescription);
-				}
-			},2000);			
-			console.log('setLocalDescription okes');
-			console.log('Create Offer', des)
-		}).catch(e);
-		// For chat
-	}).catch(errHandler);
+pc.createOffer().then(d => pc.setLocalDescription(d)).catch(e => console.log('mantab jiwa', e));
 }
-
 //File transfer
 fileTransfer.onchange = function(e){
 	var files = fileTransfer.files;
@@ -118,8 +100,6 @@ function sendFile(){
 	_fileChannel.send(fileInfo);
 	console.log('file info sent');
 }
-
-
 function fileChannel(e){
 	_fileChannel.onopen = function(e){
 		console.log('file channel is open',e);
@@ -150,7 +130,6 @@ function fileChannel(e){
 			file_download.innerHTML="download";
 			file_download.download = recFileDom.name;
 		}
-
 		// Handle initial msg exchange
 		if(data.fileInfo){
 			if(data.fileInfo == "areYouReady"){
@@ -172,7 +151,6 @@ function fileChannel(e){
 		console.log('file channel closed');
 	}
 }
-
 function chatChannel(e){
 	_chatChannel.onopen = function(e){
 		console.log('chat channel is open',e);
@@ -184,7 +162,6 @@ function chatChannel(e){
 		console.log('chat channel closed');
 	}
 }
-
 function sendFileinChannel(){
   var chunkSize = 16384;
   var sliceFile = function(offset) {
@@ -203,7 +180,6 @@ function sendFileinChannel(){
   };
   sliceFile(0);
 }
-
 function Stats(){
 	pc.getStats(null,function(stats){
     for (var key in stats) {
@@ -219,7 +195,6 @@ function Stats(){
     }
 	});
 }
-
 streamAudioFile.onchange = function(){
 	console.log('streamAudioFile');
 	context = new AudioContext();
@@ -257,7 +232,6 @@ streamAudioFile.onchange = function(){
     }
   }	
 }
-
 var audioRTC = function (cb){
   console.log('streamAudioFile');
   window.context = new AudioContext();
