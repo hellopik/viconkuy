@@ -90,8 +90,7 @@ localOfferSet.onclick = function(){
 					console.log('after GetherTimeout');
 					localOffer.value = JSON.stringify(pc.localDescription);
 				}
-			},2000);
-		console.log(pc.localDescription);			
+			},2000);			
 			console.log('setLocalDescription ok');
 			console.log('Create Offer', des)
 		}).catch(e);
