@@ -11,8 +11,18 @@
 <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>	
 </head>
 <body onload="showMyFace()">
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
 <video width=250 id="yourVideo" controls autoplay></video>
-<video width=250 id="friendsVideo" controls autoplay></video>	
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+<video width=250 id="friendsVideo" controls autoplay></video>
+  </div>	
+</div>	
 <div>
 	<input type="hidden" id="enable_chat" onclick="enableChat()" checked> 
 	<span id=micused style="right:0;position:fixed;"></span>
