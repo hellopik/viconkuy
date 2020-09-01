@@ -11,22 +11,65 @@
 <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>	
 </head>
 <body onload="showMyFace()">
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-<video width=250 id="yourVideo" controls autoplay></video>
+<div class="container">
+  <div class="row">
+    <div class="col">
+		<div class="card">
+		  	<div class="card-body">
+		    	<h5 class="card-title">Video Kamu</h5>
+		    	<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+				<video width=100% id="yourVideo" autoplay playsinline style="pointer-events: none;"></video>
+			</div>
+		</div>
+    </div>
+    <div class="col">
+			<div class="card">
+			  	<div class="card-body">
+			    	<h5 class="card-title">Video Teman Kamu</h5>
+			    	<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+					<video width=100% id="friendsVideo" autoplay playsinline style="pointer-events: none;"></video>
+			  	</div>	
+			</div> 
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-<video width=250 id="friendsVideo" controls autoplay></video>
-  </div>	
-</div>	
+</div>
+<!-- 
+<div class="card" style="width: 18rem;">
+  	<div class="card-body">
+    	<h5 class="card-title">Card title</h5>
+    	<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+		<video width=250 id="yourVideo" controls autoplay></video>
+	</div>
+</div>
+<div class="card" style="width: 18rem;">
+  	<div class="card-body">
+    	<h5 class="card-title">Card title</h5>
+    	<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+		<video width=250 id="friendsVideo" controls autoplay></video>
+  	</div>	
+</div> 
+-->	
 <div>
 	<input type="hidden" id="enable_chat" onclick="enableChat()" checked> 
 	<span id=micused style="right:0;position:fixed;"></span>
 </div>	
+<div class="container">
+<div class="row justify-content-center">
+<form class="form-inline">
+  <div class="form-group mx-sm-3 mb-2">
+		<textarea rows="4" cols="50"  id=localOffer></textarea>
+  </div>
+  <button id=localOfferSet" class="btn btn-primary mb-2">Buat Offer</button>
+</form>
+<form class="form-inline">
+  <div class="form-group mx-sm-3 mb-2">
+		<textarea rows="4" cols="50"  id="remoteOffer"></textarea>
+  </div>
+  <button id=remoteOfferGot class="btn btn-primary mb-2">Buat Answer</button>
+</form>
+</div>
+
+<!-- 
 <div>
 	<p>
 		Offer
@@ -40,7 +83,8 @@
 		<textarea id="remoteOffer" rows="4" cols="50" placeholder="Paste remote SDP"></textarea>
 		<button id=remoteOfferGot>OK</button>
 	</p>	
-</div>
+</div> 
+-->
 <script src="js/plainwebrtc.js"></script>
 </body>
 </html>
